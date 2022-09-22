@@ -1,0 +1,1 @@
+/usr/bin/c++ -O3 -DNDEBUG CMakeFiles/hooray.dir/main.cpp.o -o hooray  /usr/lib/libSDL2main.a /usr/lib/libSDL2-2.0.so.0.2400.0 

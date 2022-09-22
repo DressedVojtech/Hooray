@@ -60,7 +60,6 @@ void scene::ssf() {
     std::cout << "input the path to the .ssf file, you wish to render" << std::endl;
     std::cin >> path;
 
-
 }
 
 void scene::animate::rotate_scene(float angle, char axis) {

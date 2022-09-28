@@ -60,7 +60,47 @@ void scene::ssf() {
     std::cout << "input the path to the .ssf file, you wish to render" << std::endl;
     std::cin >> path;
 
+
 }
+
+void scene::ssf(std::string path) {
+
+}
+
+void scene::asf() {
+    std::string path;
+    std::cout << "input the path to the .ssf file, you wish to render" << std::endl;
+    std::cin >> path;
+
+}
+
+void scene::asf(std::string path) {
+    
+}
+
+void scene::set_background(rgb color) {
+    void_color = color;
+}
+
+void scene::set_resolution(int width, int height) {
+    screen_height = height;
+    screen_width = width;
+}
+
+void scene::set_cam(vec3 position, float Distance) {
+    cam_pos = position;
+    distance = Distance;
+}
+
+void scene::add_light_source(l_s light_source) {
+    light_sources.push_back(light_source);
+}
+
+void scene::add_object(object Object) {
+    objects.push_back(Object);
+}
+
+
 
 void scene::animate::rotate_scene(float angle, char axis) {
     for (int i = 0; i < triangles.size(); i++) {

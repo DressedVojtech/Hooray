@@ -1,0 +1,18 @@
+campos: 0, 0, 0  # camera position #
+res: 256, 256 # image resolution #
+ls: { # Light sources #
+    pos: 0, 0, 0
+}
+
+o: { # Object 1 #
+    pos:0, 20, 0 # Position #
+    tri: { # Triangle 1 #
+        p:0, 1, 0 # Point #
+        p:1, 0, 0
+        p:0, 0, 1
+        vt: 0, 1  # Vertex #
+        vt: 1, 1
+        vt: 0, 0
+        tex: "texture.png" # Or 255, 255, 255 #
+    }
+}

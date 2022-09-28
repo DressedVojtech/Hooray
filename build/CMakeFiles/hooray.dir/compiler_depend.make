@@ -220,6 +220,11 @@ CMakeFiles/hooray.dir/main.cpp.o: /home/vk/dev/cpp/hooray5/main.cpp \
   /usr/include/c++/12.2.0/tr1/poly_hermite.tcc \
   /usr/include/c++/12.2.0/tr1/poly_laguerre.tcc \
   /usr/include/c++/12.2.0/tr1/riemann_zeta.tcc \
+  /usr/include/c++/12.2.0/fstream \
+  /usr/include/c++/12.2.0/bits/codecvt.h \
+  /usr/include/c++/12.2.0/x86_64-pc-linux-gnu/bits/basic_file.h \
+  /usr/include/c++/12.2.0/x86_64-pc-linux-gnu/bits/c++io.h \
+  /usr/include/c++/12.2.0/bits/fstream.tcc \
   /home/vk/dev/cpp/hooray5/src/object.h \
   /usr/include/c++/12.2.0/vector \
   /usr/include/c++/12.2.0/bits/stl_uninitialized.h \
@@ -241,6 +246,16 @@ CMakeFiles/hooray.dir/main.cpp.o: /home/vk/dev/cpp/hooray5/main.cpp \
 /usr/include/c++/12.2.0/bits/stl_uninitialized.h:
 
 /usr/include/c++/12.2.0/vector:
+
+/usr/include/c++/12.2.0/bits/fstream.tcc:
+
+/usr/include/c++/12.2.0/x86_64-pc-linux-gnu/bits/c++io.h:
+
+/usr/include/c++/12.2.0/x86_64-pc-linux-gnu/bits/basic_file.h:
+
+/usr/include/c++/12.2.0/bits/codecvt.h:
+
+/usr/include/c++/12.2.0/fstream:
 
 /usr/include/c++/12.2.0/tr1/riemann_zeta.tcc:
 

@@ -28,10 +28,18 @@ class scene {
         rgb pixel(int i, int j);
         void render();
 
+        // Reading the safe files
         void ssf(); // scene safe file
         void asf(); // animations safe file
         void ssf(std::string path);
         void asf(std::string path);
+
+        // Initiating a scene using functions
+        void set_background(rgb color);
+        void set_resolution(int width, int height);
+        void set_cam(vec3 position, float Distance);
+        void add_light_source(l_s light_source);
+        void add_object(object Object);
 
     class animate {
         public:

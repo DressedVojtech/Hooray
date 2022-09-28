@@ -1,9 +1,4 @@
-﻿**The jurney of Raytracing in C++**
-
-Hooray 5.0
-
-By [**DressedVojtec**](https://github.com/DressedVojtech)[h**](https://github.com/DressedVojtech)
-# **1.0 Goals**
+﻿# **1.0 Goals**
 `	`At the start of this now 5 month jurney my goals were quite simple. All I wanted was a few images of a few reflective spheres on a plane, gaining a bit more experience with programming in C++ and maybe learing to work with a few new libraries. But as it turned out on the way, what I really wanted to do, was something quite a lot more complex.
 ## **1.1 Current goals for the first release**
 The current goals for the first releas of my raytracer hooray are:

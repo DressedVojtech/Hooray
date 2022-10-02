@@ -1,3 +1,0 @@
-/home/vk/dev/cpp/hooray5/build/CMakeFiles/hooray.dir
-/home/vk/dev/cpp/hooray5/build/CMakeFiles/edit_cache.dir
-/home/vk/dev/cpp/hooray5/build/CMakeFiles/rebuild_cache.dir

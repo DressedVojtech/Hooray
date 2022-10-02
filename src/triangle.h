@@ -24,6 +24,7 @@ class triangle {
         bool hit;
     };
 
+    vec3 normal();
     vec3b intersection(ray Ray);
     void rotate(float angle, char axis);
 };

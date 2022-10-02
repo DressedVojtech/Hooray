@@ -153,6 +153,198 @@ main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/hooray.dir/build.make CMakeFiles/hooray.dir/main.cpp.s
 .PHONY : main.cpp.s
 
+src/light_source.o: src/light_source.cpp.o
+.PHONY : src/light_source.o
+
+# target to build an object file
+src/light_source.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/hooray.dir/build.make CMakeFiles/hooray.dir/src/light_source.cpp.o
+.PHONY : src/light_source.cpp.o
+
+src/light_source.i: src/light_source.cpp.i
+.PHONY : src/light_source.i
+
+# target to preprocess a source file
+src/light_source.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/hooray.dir/build.make CMakeFiles/hooray.dir/src/light_source.cpp.i
+.PHONY : src/light_source.cpp.i
+
+src/light_source.s: src/light_source.cpp.s
+.PHONY : src/light_source.s
+
+# target to generate assembly for a file
+src/light_source.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/hooray.dir/build.make CMakeFiles/hooray.dir/src/light_source.cpp.s
+.PHONY : src/light_source.cpp.s
+
+src/object.o: src/object.cpp.o
+.PHONY : src/object.o
+
+# target to build an object file
+src/object.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/hooray.dir/build.make CMakeFiles/hooray.dir/src/object.cpp.o
+.PHONY : src/object.cpp.o
+
+src/object.i: src/object.cpp.i
+.PHONY : src/object.i
+
+# target to preprocess a source file
+src/object.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/hooray.dir/build.make CMakeFiles/hooray.dir/src/object.cpp.i
+.PHONY : src/object.cpp.i
+
+src/object.s: src/object.cpp.s
+.PHONY : src/object.s
+
+# target to generate assembly for a file
+src/object.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/hooray.dir/build.make CMakeFiles/hooray.dir/src/object.cpp.s
+.PHONY : src/object.cpp.s
+
+src/ray.o: src/ray.cpp.o
+.PHONY : src/ray.o
+
+# target to build an object file
+src/ray.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/hooray.dir/build.make CMakeFiles/hooray.dir/src/ray.cpp.o
+.PHONY : src/ray.cpp.o
+
+src/ray.i: src/ray.cpp.i
+.PHONY : src/ray.i
+
+# target to preprocess a source file
+src/ray.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/hooray.dir/build.make CMakeFiles/hooray.dir/src/ray.cpp.i
+.PHONY : src/ray.cpp.i
+
+src/ray.s: src/ray.cpp.s
+.PHONY : src/ray.s
+
+# target to generate assembly for a file
+src/ray.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/hooray.dir/build.make CMakeFiles/hooray.dir/src/ray.cpp.s
+.PHONY : src/ray.cpp.s
+
+src/rgb.o: src/rgb.cpp.o
+.PHONY : src/rgb.o
+
+# target to build an object file
+src/rgb.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/hooray.dir/build.make CMakeFiles/hooray.dir/src/rgb.cpp.o
+.PHONY : src/rgb.cpp.o
+
+src/rgb.i: src/rgb.cpp.i
+.PHONY : src/rgb.i
+
+# target to preprocess a source file
+src/rgb.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/hooray.dir/build.make CMakeFiles/hooray.dir/src/rgb.cpp.i
+.PHONY : src/rgb.cpp.i
+
+src/rgb.s: src/rgb.cpp.s
+.PHONY : src/rgb.s
+
+# target to generate assembly for a file
+src/rgb.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/hooray.dir/build.make CMakeFiles/hooray.dir/src/rgb.cpp.s
+.PHONY : src/rgb.cpp.s
+
+src/scene.o: src/scene.cpp.o
+.PHONY : src/scene.o
+
+# target to build an object file
+src/scene.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/hooray.dir/build.make CMakeFiles/hooray.dir/src/scene.cpp.o
+.PHONY : src/scene.cpp.o
+
+src/scene.i: src/scene.cpp.i
+.PHONY : src/scene.i
+
+# target to preprocess a source file
+src/scene.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/hooray.dir/build.make CMakeFiles/hooray.dir/src/scene.cpp.i
+.PHONY : src/scene.cpp.i
+
+src/scene.s: src/scene.cpp.s
+.PHONY : src/scene.s
+
+# target to generate assembly for a file
+src/scene.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/hooray.dir/build.make CMakeFiles/hooray.dir/src/scene.cpp.s
+.PHONY : src/scene.cpp.s
+
+src/triangle.o: src/triangle.cpp.o
+.PHONY : src/triangle.o
+
+# target to build an object file
+src/triangle.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/hooray.dir/build.make CMakeFiles/hooray.dir/src/triangle.cpp.o
+.PHONY : src/triangle.cpp.o
+
+src/triangle.i: src/triangle.cpp.i
+.PHONY : src/triangle.i
+
+# target to preprocess a source file
+src/triangle.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/hooray.dir/build.make CMakeFiles/hooray.dir/src/triangle.cpp.i
+.PHONY : src/triangle.cpp.i
+
+src/triangle.s: src/triangle.cpp.s
+.PHONY : src/triangle.s
+
+# target to generate assembly for a file
+src/triangle.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/hooray.dir/build.make CMakeFiles/hooray.dir/src/triangle.cpp.s
+.PHONY : src/triangle.cpp.s
+
+src/vec2.o: src/vec2.cpp.o
+.PHONY : src/vec2.o
+
+# target to build an object file
+src/vec2.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/hooray.dir/build.make CMakeFiles/hooray.dir/src/vec2.cpp.o
+.PHONY : src/vec2.cpp.o
+
+src/vec2.i: src/vec2.cpp.i
+.PHONY : src/vec2.i
+
+# target to preprocess a source file
+src/vec2.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/hooray.dir/build.make CMakeFiles/hooray.dir/src/vec2.cpp.i
+.PHONY : src/vec2.cpp.i
+
+src/vec2.s: src/vec2.cpp.s
+.PHONY : src/vec2.s
+
+# target to generate assembly for a file
+src/vec2.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/hooray.dir/build.make CMakeFiles/hooray.dir/src/vec2.cpp.s
+.PHONY : src/vec2.cpp.s
+
+src/vec3.o: src/vec3.cpp.o
+.PHONY : src/vec3.o
+
+# target to build an object file
+src/vec3.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/hooray.dir/build.make CMakeFiles/hooray.dir/src/vec3.cpp.o
+.PHONY : src/vec3.cpp.o
+
+src/vec3.i: src/vec3.cpp.i
+.PHONY : src/vec3.i
+
+# target to preprocess a source file
+src/vec3.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/hooray.dir/build.make CMakeFiles/hooray.dir/src/vec3.cpp.i
+.PHONY : src/vec3.cpp.i
+
+src/vec3.s: src/vec3.cpp.s
+.PHONY : src/vec3.s
+
+# target to generate assembly for a file
+src/vec3.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/hooray.dir/build.make CMakeFiles/hooray.dir/src/vec3.cpp.s
+.PHONY : src/vec3.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -165,6 +357,30 @@ help:
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
+	@echo "... src/light_source.o"
+	@echo "... src/light_source.i"
+	@echo "... src/light_source.s"
+	@echo "... src/object.o"
+	@echo "... src/object.i"
+	@echo "... src/object.s"
+	@echo "... src/ray.o"
+	@echo "... src/ray.i"
+	@echo "... src/ray.s"
+	@echo "... src/rgb.o"
+	@echo "... src/rgb.i"
+	@echo "... src/rgb.s"
+	@echo "... src/scene.o"
+	@echo "... src/scene.i"
+	@echo "... src/scene.s"
+	@echo "... src/triangle.o"
+	@echo "... src/triangle.i"
+	@echo "... src/triangle.s"
+	@echo "... src/vec2.o"
+	@echo "... src/vec2.i"
+	@echo "... src/vec2.s"
+	@echo "... src/vec3.o"
+	@echo "... src/vec3.i"
+	@echo "... src/vec3.s"
 .PHONY : help
 
 

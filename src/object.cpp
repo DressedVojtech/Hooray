@@ -6,6 +6,6 @@
 void object::add_triangle(triangle TRIANGLE) {
     triangles.push_back(TRIANGLE);
 }
-void object::add_position(vec3 pos) {
+void object::set_position(vec3 pos) {
     position = pos;
 }

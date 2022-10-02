@@ -27,20 +27,20 @@ vec3 scene::pixel_coordinates(int i, int j) {
     return pixel;
 }
 
-rgb scene::pixel(int i, int j) {
-    ray Ray = {cam_pos, pixel_coordinates(i, j)};
+rgb scene::pixel(int a, int b) {
+    ray Ray = {cam_pos, pixel_coordinates(a, b)};
     float min_t = 4294967295;
     int index = -1;
     for (int i = 0; i < triangles.size(); i++) {
         if (triangles[i].intersection(Ray).P.magnitude() < min_t && triangles[i].intersection(Ray).hit == true) {
-            min_t = triangles[i].interseciton(Ray).P.magnitude();
+            min_t = triangles[i].intersection(Ray).P.magnitude();
             index = i;
         }
     }
     if (index == -1) {
         return void_color;
     } else {
-        return trinagles[i].color; //Let's just ignore textures all together for now
+        return triangles[index].color; //Let's just ignore textures all together for now
     }
 }
 
@@ -102,19 +102,19 @@ void scene::add_object(object Object) {
 
 
 
-void scene::animate::rotate_scene(float angle, char axis) {
-    for (int i = 0; i < triangles.size(); i++) {
-        triangles[i].p0.rotate(angle, axis);
-        triangles[i].p1.rotate(angle, axis);
-        triangles[i].p2.rotate(angle, axis);
-    }
-}
+// void scene::animate::rotate_scene(float angle, char axis) {
+//     for (int i = 0; i < triangles.size(); i++) {
+//         triangles[i].p0.rotate(angle, axis);
+//         triangles[i].p1.rotate(angle, axis);
+//         triangles[i].p2.rotate(angle, axis);
+//     }
+// }
 
-void scene::animate::rotate_object(float angle, char axis, int index) {
-    for (int i = 0; i < objects[index].trianlges.size(); i++) {
-        objects[index].triangles[i].p0.rotate(angle, axis);
-        objects[index].triangles[i].p1.rotate(angle, axis);
-        objects[index].triangles[i].p2.rotate(angle, axis);
-    }
-    scene::populate_triangles();
-}
+// void scene::animate::rotate_object(float angle, char axis, int index) {
+//     for (int i = 0; i < objects[index].trianlges.size(); i++) {
+//         objects[index].triangles[i].p0.rotate(angle, axis);
+//         objects[index].triangles[i].p1.rotate(angle, axis);
+//         objects[index].triangles[i].p2.rotate(angle, axis);
+//     }
+//     scene::populate_triangles();
+// }

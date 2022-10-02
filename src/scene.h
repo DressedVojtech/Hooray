@@ -43,9 +43,9 @@ class scene {
 
     class animate {
         public:
-            void rotate_object_in_scene(float angle, char axis, int index);
-            void rotate_object(float angle, char axis, int index);
-            void rotate_scene(float angle, char axis);
+            // void rotate_object_in_scene(float angle, char axis, int index);
+            // void rotate_object(float angle, char axis, int index);
+            // void rotate_scene(float angle, char axis);
     };
 };
 

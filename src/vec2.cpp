@@ -1,4 +1,5 @@
 #include "vec2.h"
+#include <math.h>
 
 vec2 vec2::operator + (vec2 A) {
     vec2 res = {x + A.x, y + A.y};

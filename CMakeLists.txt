@@ -14,7 +14,15 @@ find_package(SDL2 REQUIRED)
 include_directories(${SDL2_INCLUDE_DIRS})
 
 # executable
-add_executable (hooray main.cpp)
-#target_include_directories(hooray src)
+add_executable(hooray main.cpp
+    src/light_source.cpp
+    src/object.cpp
+    src/ray.cpp
+    src/rgb.cpp
+    src/scene.cpp
+    src/triangle.cpp
+    src/vec2.cpp
+    src/vec3.cpp
+)
+target_include_directories(hooray PRIVATE src)
 target_link_libraries(hooray ${SDL2_LIBRARIES})
-

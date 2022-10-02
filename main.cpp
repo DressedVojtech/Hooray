@@ -26,7 +26,7 @@ int main() {
     Triangle.color = {255, 255, 0};
     Triangle.texture = "Ahoj";
     Object.add_triangle(Triangle);
-    Object.set_position({0, 20, 0});
+    Object.set_position({0, 5, 0});
     scene1.add_object(Object);
     scene1.render();
 }

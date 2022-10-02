@@ -1,5 +1,6 @@
 #ifndef vec2_H
 #define vec2_H
+#include <math.h>
 
 class vec2 {
     public:

@@ -27,6 +27,7 @@ class triangle {
     vec3 normal();
     vec3b intersection(ray Ray);
     void rotate(float angle, char axis);
+    triangle operator + (vec3 A);
 };
 
 #endif

@@ -13,11 +13,9 @@ void scene::populate_triangles() {
     triangles.clear();
     for (int i = 0; i < objects.size(); i++) {
         for (int j = 0; j < objects[i].triangles.size(); j++) {
-            triangle TRIANGLE;
-            TRIANGLE.p0 = objects[i].triangles[j].p0 + objects[i].position;
-            TRIANGLE.p1 = objects[i].triangles[j].p1 + objects[i].position;
-            TRIANGLE.p2 = objects[i].triangles[j].p2 + objects[i].position;
-            triangles.push_back(TRIANGLE);
+            triangle Triangle;
+            Triangle = objects[i].triangles[j] + objects[i].position;
+            triangles.push_back(Triangle);
         }
     }
 }
@@ -32,8 +30,9 @@ rgb scene::pixel(int a, int b) {
     float min_t = 4294967295;
     int index = -1;
     for (int i = 0; i < triangles.size(); i++) {
-        if (triangles[i].intersection(Ray).P.magnitude() < min_t && triangles[i].intersection(Ray).hit == true) {
-            min_t = triangles[i].intersection(Ray).P.magnitude();
+        triangle::vec3b intersection_point = triangles[i].intersection(Ray);
+        if (intersection_point.P.distance_from(cam_pos) < min_t && intersection_point.hit == true) {
+            min_t = triangles[i].intersection(Ray).P.distance_from(cam_pos);
             index = i;
         }
     }

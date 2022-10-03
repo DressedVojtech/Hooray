@@ -21,15 +21,23 @@ void triangle::rotate(float angle, char axis) {
 }
 
 triangle::vec3b triangle::intersection(ray Ray) {
-    vec3 P = {-1, -1, -1};
+    vec3 P;
     vec3 N = normal();
-        if (N.dot_product(Ray.direction) == 0) return {{P}, 0};
+        if (N.dot_product(Ray.direction) == 0) return {{P}, false};
     float t = - (N.dot_product(Ray.origin) + N.dot_product(p0))/N.dot_product(Ray.direction);
     P = Ray.origin + Ray.direction*t;
         if (t < 0) return {{P}, false};
-        vec3 P0 = p0 - P;
-        vec3 P1 = p1 - P;
-        vec3 P2 = p2 - P;
+    vec3 P0 = p0 - P;
+    vec3 P1 = p1 - P;
+    vec3 P2 = p2 - P;
         if ((P0.angle(P1) / 180 * PI) + (P1.angle(P2) / 180 * PI) + (P0.angle(P2) / 180 * PI) == 360) return {{P}, true};
-    return {{P}, false};
+        else return {{P}, false};
+}
+
+triangle triangle::operator + (vec3 A) {
+    triangle TRIANGLE;
+    TRIANGLE.p0 = p0 + A;
+    TRIANGLE.p1 = p1 + A;
+    TRIANGLE.p2 = p2 + A;
+    return TRIANGLE;
 }

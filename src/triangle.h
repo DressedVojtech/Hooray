@@ -6,8 +6,6 @@
 #include "ray.h"
 #include <string>
 
-#define PI 3.1415926535897932384624338327595028841971
-
 class triangle {
     public:
     vec3 p0;

@@ -5,12 +5,16 @@
 #include "ray.h"
 #include <string>
 
-#define PI 3.1415926535897932384624338327595028841971
+const float PI = 3.1415926535897932384624338327595028841971;
+
+bool approxEquals(float a, float b, float c) {
+    return abs(a - b) < c;
+}
 
 vec3 triangle::normal() {
-        vec3 U = p2 - p1;
-        vec3 V = p0 - p1;
-        vec3 normal = U.cross_product(V);
+        vec3 A = p2 - p1;
+        vec3 B = p0 - p1;
+        vec3 normal = A.cross_product(B);
         return normal;
 }
 
@@ -30,7 +34,7 @@ triangle::vec3b triangle::intersection(ray Ray) {
     vec3 P0 = p0 - P;
     vec3 P1 = p1 - P;
     vec3 P2 = p2 - P;
-        if ((P0.angle(P1) / 180 * PI) + (P1.angle(P2) / 180 * PI) + (P0.angle(P2) / 180 * PI) == 360) return {{P}, true};
+        if (approxEquals((P0.angle(P1)) + (P1.angle(P2)) + (P0.angle(P2)), 2 * PI, 0.5)) return {{P}, true};
         else return {{P}, false};
 }
 

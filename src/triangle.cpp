@@ -12,7 +12,7 @@ bool approxEquals(float a, float b, float c) {
 }
 
 vec3 triangle::normal() {
-        vec3 A = p2 - p1;
+        vec3 A = p0 - p2;
         vec3 B = p0 - p1;
         vec3 normal = A.cross_product(B);
         return normal;
@@ -27,15 +27,15 @@ void triangle::rotate(float angle, char axis) {
 triangle::vec3b triangle::intersection(ray Ray) {
     vec3 P;
     vec3 N = normal();
-        if (N.dot_product(Ray.direction) == 0) return {{P}, false};
-    float t = - (N.dot_product(Ray.origin) + N.dot_product(p0))/N.dot_product(Ray.direction);
+    if (N.dot_product(Ray.direction) == 0) return {{P}, false};
+    float t =  - (N.dot_product(Ray.origin) + N.dot_product(p0))/N.dot_product(Ray.direction);
     P = Ray.origin + Ray.direction*t;
-        if (t < 0) return {{P}, false};
+    if (t < 0) return {{P}, false};
     vec3 P0 = p0 - P;
     vec3 P1 = p1 - P;
     vec3 P2 = p2 - P;
-        if (approxEquals((P0.angle(P1)) + (P1.angle(P2)) + (P0.angle(P2)), 2 * PI, 0.5)) return {{P}, true};
-        else return {{P}, false};
+    if (approxEquals((P0.angle(P1)) + (P1.angle(P2)) + (P0.angle(P2)), 2 * PI, 0.1)) return {{P}, true};
+    return {{P}, false};
 }
 
 triangle triangle::operator + (vec3 A) {

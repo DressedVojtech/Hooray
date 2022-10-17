@@ -26,12 +26,17 @@ vec3 scene::pixel_coordinates(int i, int j) {
 }
 
 rgb scene::pixel(int a, int b) {
+    // populate_triangles();
     ray Ray = {cam_pos, pixel_coordinates(a, b)};
     float min_t;
     int index = -1;
     for (int i = 0; i < triangles.size(); i++) {
         triangle::vec3b intersection_point = triangles[i].intersection(Ray);
-        if ((intersection_point.P.distance_from(cam_pos) < min_t && intersection_point.hit == true) || (index == -1 && intersection_point.hit == true)) {
+        if (intersection_point.hit == false);
+        else if (index == 0 && intersection_point.hit == true) {
+            min_t = triangles[i].intersection(Ray).P.distance_from(cam_pos);
+            index = i;
+        } else if (intersection_point.P.distance_from(cam_pos) < min_t && intersection_point.hit == true) {
             min_t = triangles[i].intersection(Ray).P.distance_from(cam_pos);
             index = i;
         }
@@ -50,8 +55,7 @@ void scene::render() {
             rgb pixel_color = pixel(i, j);
             std::cout << pixel_color.r << " " << pixel_color.g << " " << pixel_color.b << " ";
         }
-    
-        // std::cout << std::endl;
+        std::cout << std::endl;
     }
 }
 

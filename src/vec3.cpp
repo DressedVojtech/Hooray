@@ -2,17 +2,17 @@
 #include <math.h>
 
 vec3 vec3::operator + (vec3 A) {
-    vec3 res = {x + x, y + y, z + z};
+    vec3 res = {x + A.x, y + A.y, z + A.z};
     return res;
 }
 
 vec3 vec3::operator - (vec3 A) {
-    vec3 res = {x - x, y - y, z - z};
+    vec3 res = {x - A.x, y - A.y, z - A.z};
     return res;
 }
 
 vec3 vec3::operator * (vec3 A) {
-    vec3 res = {x * x, y * y, z * z};
+    vec3 res = {x * A.x, y * A.y, z * A.z};
     return res;
 }
 
@@ -22,8 +22,28 @@ vec3 vec3::operator * (float a) {
 }
 
 vec3 vec3::operator / (vec3 A) {
-    vec3 res = {x / x, y / y, z / z};
+    vec3 res = {x / A.x, y / A.y, z / A.z};
     return res;
+}
+
+vec3 vec3::cross_product(vec3 A) {
+    return {y * A.z - z * A.y, z * A.x - x * A.z, x * A.y - y * A.x};
+}
+
+float vec3::dot_product(vec3 A) {
+    return (x * A.x + y * A.y + z * A.z);
+}
+
+float vec3::distance_from(vec3 A) {
+    return sqrt(pow(x - A.x, 2) + pow(y - A.y, 2) + pow(z - A.z, 2));
+}
+
+float vec3::magnitude() {
+    return sqrt(pow(x, 2) + pow (y, 2) + pow(z, 2));
+}
+
+float vec3::angle(vec3 A) {
+    return acos(dot_product(A)/(magnitude() * A.magnitude()));
 }
 
 void vec3::rotate(float angle, char axis) {
@@ -37,19 +57,4 @@ void vec3::rotate(float angle, char axis) {
         x = (pow(x, 2) + pow(y, 2)) * sin(atan(x/y) + angle);
         y = (pow(x, 2) + pow(y, 2)) * cos(atan(x/y) + angle);
     }
-}
-vec3 vec3::cross_product(vec3 B) {
-    return {y * B.z - z * B.y, z * B.x - x * B.z, x * B.y - y * B.x};
-}
-float vec3::dot_product(vec3 B) {
-    return (x * B.x + y * B.y + z * B.z);
-}
-float vec3::distance_from(vec3 B) {
-    return sqrt(pow(x - B.x, 2) + pow(y - B.y, 2) + pow(z - B.z, 2));
-}
-float vec3::magnitude() {
-    return sqrt(pow(x, 2) + pow (y, 2) + pow(z, 2));
-}
-float vec3::angle(vec3 B) {
-    return acos(dot_product(B)/(magnitude() * B.magnitude()));
 }

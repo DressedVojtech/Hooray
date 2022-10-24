@@ -14,7 +14,14 @@ void scene::populate_triangles() {
     for (int i = 0; i < objects.size(); i++) {
         for (int j = 0; j < objects[i].triangles.size(); j++) {
             triangle Triangle;
-            Triangle = objects[i].triangles[j] + objects[i].position;
+            Triangle.p0 = objects[i].triangles[j].p0 + objects[i].position;
+            Triangle.p1 = objects[i].triangles[j].p1 + objects[i].position;
+            Triangle.p2 = objects[i].triangles[j].p2 + objects[i].position;
+            Triangle.color = objects[i].triangles[j].color;
+            Triangle.texture = objects[i].triangles[j].texture;
+            Triangle.vt1 = objects[i].triangles[j].vt1;
+            Triangle.vt2 = objects[i].triangles[j].vt2;
+            Triangle.vt0 = objects[i].triangles[j].vt0;
             triangles.push_back(Triangle);
         }
     }
@@ -53,9 +60,9 @@ void scene::render() {
     for (int i = 0; i < screen_height; i++) {
         for (int j = 0; j < screen_width; j++) {
             rgb pixel_color = pixel(i, j);
-            std::cout << pixel_color.r << " " << pixel_color.g << " " << pixel_color.b << " ";
+            std::cout << pixel_color.r << " " << pixel_color.g << " " << pixel_color.b << std::endl;
         }
-        std::cout << std::endl;
+        // std::cout << std::endl;
     }
 }
 

@@ -11,6 +11,7 @@ class object {
 
         void add_triangle(triangle TRIANGLE);
         void set_position(vec3 pos);
+        void rotate(float angle, char axis);
 };
 
 #endif

@@ -1,5 +1,6 @@
 #include <string>
 #include <fstream>
+#include <math.h>
 #include "scene.h"
 #include "object.h"
 #include "rgb.h"
@@ -8,20 +9,18 @@
 #include "triangle.h"
 #include "ray.h"
 #include "light_source.h"
+#include "rgba.h"
+#define black {0, 0, 0}
 
 void scene::populate_triangles() {
     triangles.clear();
     for (int i = 0; i < objects.size(); i++) {
         for (int j = 0; j < objects[i].triangles.size(); j++) {
             triangle Triangle;
-            Triangle.p0 = objects[i].triangles[j].p0 + objects[i].position;
-            Triangle.p1 = objects[i].triangles[j].p1 + objects[i].position;
-            Triangle.p2 = objects[i].triangles[j].p2 + objects[i].position;
-            Triangle.color = objects[i].triangles[j].color;
-            Triangle.texture = objects[i].triangles[j].texture;
-            Triangle.vt1 = objects[i].triangles[j].vt1;
-            Triangle.vt2 = objects[i].triangles[j].vt2;
-            Triangle.vt0 = objects[i].triangles[j].vt0;
+            Triangle = objects[i].triangles[j];
+            Triangle.p0 = Triangle.p0 + objects[i].position;
+            Triangle.p1 = Triangle.p1 + objects[i].position;
+            Triangle.p2 = Triangle.p2 + objects[i].position;
             triangles.push_back(Triangle);
         }
     }
@@ -33,25 +32,29 @@ vec3 scene::pixel_coordinates(int i, int j) {
 }
 
 rgb scene::pixel(int a, int b) {
-    // populate_triangles();
     ray Ray = {cam_pos, pixel_coordinates(a, b)};
     float min_t;
     int index = -1;
     for (int i = 0; i < triangles.size(); i++) {
-        triangle::vec3b intersection_point = triangles[i].intersection(Ray);
-        if (intersection_point.hit == false);
-        else if (index == 0 && intersection_point.hit == true) {
-            min_t = triangles[i].intersection(Ray).P.distance_from(cam_pos);
+        triangle::vec3b intersection = triangles[i].intersection(Ray);
+        if (intersection.hit == false);
+        else if (index == -1 && intersection.hit == true) {
+            min_t = intersection.P.distance_from(cam_pos);
             index = i;
-        } else if (intersection_point.P.distance_from(cam_pos) < min_t && intersection_point.hit == true) {
-            min_t = triangles[i].intersection(Ray).P.distance_from(cam_pos);
+        } else if (intersection.P.distance_from(cam_pos) < min_t && intersection.hit == true) {
+            min_t = intersection.P.distance_from(cam_pos);
             index = i;
         }
     }
     if (index == -1) {
         return void_color;
     }
-    return triangles[index].color;
+    // ray l_Ray = {light_sources[0].position, triangles[index].intersection(Ray).P};
+    rgb res = triangles[index].color;
+    res.dimm((light_sources[0].position.distance_from(triangles[index].intersection(Ray).P))/(light_sources[0].intensity*10));
+    // rgb fog_level = {fog.r / a, fog.g / a, fog.b / a};
+    // res = res + fog_level;
+    return res;
 }
 
 void scene::render() {
@@ -66,27 +69,8 @@ void scene::render() {
     }
 }
 
-void scene::ssf() {
-    std::string path;
-    std::cout << "input the path to the .ssf file, you wish to render" << std::endl;
-    std::cin >> path;
+void readSafeFiles() {
 
-
-}
-
-void scene::ssf(std::string path) {
-
-}
-
-void scene::asf() {
-    std::string path;
-    std::cout << "input the path to the .ssf file, you wish to render" << std::endl;
-    std::cin >> path;
-
-}
-
-void scene::asf(std::string path) {
-    
 }
 
 void scene::set_background(rgb color) {
@@ -105,6 +89,10 @@ void scene::set_cam(vec3 position, float Distance) {
 
 void scene::add_light_source(l_s light_source) {
     light_sources.push_back(light_source);
+}
+
+void scene::set_fog(rgba Fog) {
+    fog = Fog;
 }
 
 void scene::add_object(object Object) {

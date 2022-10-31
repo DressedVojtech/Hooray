@@ -7,7 +7,10 @@ class rgb {
         float g;
         float b;
 
+        rgb operator + (rgb A);
+
         void check();
+        void dimm(float a);
 };
 
 #endif

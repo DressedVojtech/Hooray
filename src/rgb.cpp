@@ -1,5 +1,10 @@
 #include "rgb.h"
 
+rgb rgb::operator + (rgb A) {
+    return {A.r + r, A.g + g, A.b + b};
+}
+
+
 void rgb::check() {
     if(r < 0) {
         r = 0;
@@ -16,4 +21,11 @@ void rgb::check() {
     } else if (b > 255) {
         b = 255;
     }
+}
+
+void rgb::dimm(float a) {
+    r -= a;
+    g -= a;
+    b -= a;
+    check();
 }

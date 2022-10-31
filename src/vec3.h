@@ -13,8 +13,10 @@ class vec3 {
         vec3 operator +(vec3 A);
         vec3 operator -(vec3 A);
         vec3 operator *(vec3 A);
-        vec3 operator * (float a);
+        vec3 operator *(float a);
         vec3 operator /(vec3 A);
+        bool operator ==(vec3 A);
+        bool operator !=(vec3 A);
 
         void rotate(float angle, char axis);
         vec3 cross_product(vec3 B);

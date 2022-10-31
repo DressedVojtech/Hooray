@@ -26,6 +26,22 @@ vec3 vec3::operator / (vec3 A) {
     return res;
 }
 
+bool vec3::operator != (vec3 A) {
+    if (x == A.x && y == A.y && z == A.z) {
+        return false;
+    } else {
+        return true;
+    }
+}
+
+bool vec3::operator == (vec3 A) {
+    if (x == A.x && y == A.y && z == A.z) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
 vec3 vec3::cross_product(vec3 A) {
     return {y * A.z - z * A.y, z * A.x - x * A.z, x * A.y - y * A.x};
 }

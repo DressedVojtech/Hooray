@@ -10,6 +10,7 @@
 #include "vec2.h"
 #include "triangle.h"
 #include "ray.h"
+#include "rgba.h"
 #include "light_source.h"
 
 class scene {
@@ -18,6 +19,7 @@ class scene {
         std::vector <object> objects;
         std::vector <triangle> triangles;
         std::vector <l_s> light_sources;
+        rgba fog = {0, 0, 0, 0}; // light "gets scattered around"
         int screen_width;
         int screen_height;
         vec3 cam_pos;
@@ -29,16 +31,14 @@ class scene {
         void render();
 
         // Reading the safe files
-        void ssf(); // scene safe file
-        void asf(); // animations safe file
-        void ssf(std::string path);
-        void asf(std::string path);
+        void readSafeFile();
 
         // Initiating a scene using functions
         void set_background(rgb color);
         void set_resolution(int width, int height);
         void set_cam(vec3 position, float Distance);
         void add_light_source(l_s light_source);
+        void set_fog(rgba Fog);
         void add_object(object Object);
 
     class animate {
@@ -46,6 +46,8 @@ class scene {
             // void rotate_object_in_scene(float angle, char axis, int index);
             // void rotate_object(float angle, char axis, int index);
             // void rotate_scene(float angle, char axis);
+            // void moveScene(vec3 dir);
+            // void moveObject(vec3 dir, int index);
     };
 };
 

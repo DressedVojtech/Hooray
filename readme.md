@@ -2,23 +2,23 @@
 ## A raytracing project in C++
 ### Instaling and running the project
 To install and build. First clone the repository
- `  git clone https://github.com/DressedVojtech/Hooray.git \n
+ `  git clone https://github.com/DressedVojtech/Hooray.git 
     cd Hooray`
 
-Next we need to build the project using cmake:\n
-`   cd build\n
-    cmake ..\n
-    make`\n
+Next we need to build the project using cmake:
+`   cd build
+    cmake ..
+    make`
 
-To run the project just exececute the executable.\n
-`   ./hooray > out.ppm`\n
+To run the project just exececute the executable.
+`   ./hooray > out.ppm`
 
 By including the `>` all the logs of the program get into the file.
 
 ### Capibilities
-<picture>
+<!-- <picture>
     <src srcset="https://github.com/DressedVojtech/Hooray/blob/main/build/renders/out5.png">
-</picture>
+</picture> -->
 Right now, the program can render any object made of triangles, which you have to define inside the main function, by creating an object and then populating it with triagnles using the `add_traingle()` function. Then we add the object into the scene and render.
 We create a scene by creating a variable of type scene inside the main funciton, like this `scene MyScene;`.
 Then we set the resolution of the scene: `MyScene.set_resolution(1920, 1080);`

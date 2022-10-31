@@ -2,13 +2,10 @@
 ## A raytracing project in C++
 ### Instaling and running the project
 To install and build. First clone the repository
- `  git clone https://github.com/DressedVojtech/Hooray.git 
-    cd Hooray`
+ `  git clone https://github.com/DressedVojtech/Hooray.git && cd Hooray`
 
 Next we need to build the project using cmake:
-`   cd build
-    cmake ..
-    make`
+`   cd build && cmake .. && make`
 
 To run the project just exececute the executable.
 `   ./hooray > out.ppm`

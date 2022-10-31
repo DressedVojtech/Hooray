@@ -1,6 +1,6 @@
-﻿#Hooray
-##A raytracing project in C++
-###Instaling and running the project
+﻿# Hooray
+## A raytracing project in C++
+### Instaling and running the project
 To install and build. First clone the repository
  `  git clone https://github.com/DressedVojtech/Hooray.git
     cd Hooray`
@@ -15,7 +15,7 @@ To run the project just exececute the executable.
 
 By including the `>` all the logs of the program get into the file.
 
-###Capibilities
+### Capibilities
 <picture>
     <src srcset="https://github.com/DressedVojtech/Hooray/blob/main/build/renders/out5.png">
 </picture>
@@ -26,7 +26,7 @@ We define a view-point/camera: `MyScene.set_cam({0, 0, 0}, 200.0)`, this means t
 Then we need to add a light source: `MyScene.add_light_source({{10, 10, 10}, 0.375})`, this means that we added a light source at coordinates 10, 10, 10 and the intensity is 37.5%. Note that the instensity can be more thena 100%.
 After we set all these values and add an object to the scene, we can render the scene by running the funciton `MyScene.render();`
 
-###Future goals
+### Future goals
 - Reading safe files from .yaml
 - Animation
 - Better lighting

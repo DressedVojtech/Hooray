@@ -10,6 +10,7 @@
 #include "ray.h"
 #include "light_source.h"
 #include "rgba.h"
+#include "bitmap.h"
 #define black {0, 0, 0}
 
 void scene::populate_triangles() {
@@ -59,13 +60,12 @@ rgb scene::pixel(int a, int b) {
 
 void scene::render() {
     populate_triangles();
+    bitmap image(screen_width, screen_height);
     std::cout << "P3\n" << screen_width << " " << screen_height << "\n255\n\n";
     for (int i = 0; i < screen_height; i++) {
         for (int j = 0; j < screen_width; j++) {
-            rgb pixel_color = pixel(i, j);
-            std::cout << pixel_color.r << " " << pixel_color.g << " " << pixel_color.b << std::endl;
+            image.setCell(pixel(i, j), i, j);
         }
-        // std::cout << std::endl;
     }
 }
 

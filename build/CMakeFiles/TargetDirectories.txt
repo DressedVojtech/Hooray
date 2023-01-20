@@ -1,3 +1,0 @@
-/home/vk/dev/cpp/Hooray/build/CMakeFiles/hooray.dir
-/home/vk/dev/cpp/Hooray/build/CMakeFiles/edit_cache.dir
-/home/vk/dev/cpp/Hooray/build/CMakeFiles/rebuild_cache.dir

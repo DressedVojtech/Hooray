@@ -40,15 +40,6 @@ class scene {
         void add_light_source(l_s light_source);
         void set_fog(rgba Fog);
         void add_object(object Object);
-
-    class animate {
-        public:
-            // void rotate_object_in_scene(float angle, char axis, int index);
-            // void rotate_object(float angle, char axis, int index);
-            // void rotate_scene(float angle, char axis);
-            // void moveScene(vec3 dir);
-            // void moveObject(vec3 dir, int index);
-    };
 };
 
 #endif

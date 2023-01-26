@@ -24,6 +24,7 @@ add_executable(hooray main.cpp
     src/vec2.cpp
     src/vec3.cpp
     src/bitmap.cpp
+    src/ui.cpp
 )
 target_include_directories(hooray PRIVATE src)
 target_link_libraries(hooray ${SDL2_LIBRARIES})

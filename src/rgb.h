@@ -10,7 +10,7 @@ class rgb {
         rgb operator + (rgb A);
 
         void check();
-        void dimm(float a);
+        void dim(float a);
 };
 
 #endif

@@ -5,7 +5,7 @@
 class l_s {
     public:
         vec3 position;
-        float intensity; // 0 ~ 0%, 1 ~ 100%
+        float intensity; // 0 ~ 0% - 1 ~ 100%
 };
 
 #endif

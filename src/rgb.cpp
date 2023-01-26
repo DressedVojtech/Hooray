@@ -23,7 +23,7 @@ void rgb::check() {
     }
 }
 
-void rgb::dimm(float a) {
+void rgb::dim(float a) {
     r -= a;
     g -= a;
     b -= a;

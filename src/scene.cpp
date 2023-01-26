@@ -52,7 +52,7 @@ rgb scene::pixel(int a, int b) {
     }
     // ray l_Ray = {light_sources[0].position, triangles[index].intersection(Ray).P};
     rgb res = triangles[index].color;
-    res.dimm((light_sources[0].position.distance_from(triangles[index].intersection(Ray).P))/(light_sources[0].intensity*10));
+    res.dim((light_sources[0].position.distance_from(triangles[index].intersection(Ray).P))/(light_sources[0].intensity*10));
     // rgb fog_level = {fog.r / a, fog.g / a, fog.b / a};
     // res = res + fog_level;
     return res;
@@ -98,22 +98,3 @@ void scene::set_fog(rgba Fog) {
 void scene::add_object(object Object) {
     objects.push_back(Object);
 }
-
-
-
-// void scene::animate::rotate_scene(float angle, char axis) {
-//     for (int i = 0; i < triangles.size(); i++) {
-//         triangles[i].p0.rotate(angle, axis);
-//         triangles[i].p1.rotate(angle, axis);
-//         triangles[i].p2.rotate(angle, axis);
-//     }
-// }
-
-// void scene::animate::rotate_object(float angle, char axis, int index) {
-//     for (int i = 0; i < objects[index].trianlges.size(); i++) {
-//         objects[index].triangles[i].p0.rotate(angle, axis);
-//         objects[index].triangles[i].p1.rotate(angle, axis);
-//         objects[index].triangles[i].p2.rotate(angle, axis);
-//     }
-//     scene::populate_triangles();
-// }

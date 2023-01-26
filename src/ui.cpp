@@ -7,12 +7,14 @@
 #include <iomanip>
 
 void ui::tui() {
+    LoadSafeFile:
     std::string d;
     std::cout << "Would you like to load a safe file of a scene (.yaml) (y/n)" << std::endl;
     std::cin >> d;
     if (d == "y") {
         std::cin >> path;
     } else if (d == "n") {
+        SceneCreator:
         std::string b;
         std::cout << "Do you want to create a scene from scratch? (y/n)" << std::endl;
         std::cin >> b;
@@ -54,15 +56,59 @@ void ui::tui() {
                 std::string name;
             };
             std::vector<object_strings> objects;
-
-            std::cout << "Welcome to the scene creator. Type h for help" << std::endl;
+            system("clear");
+            std::cout << "Welcome to the TUI of Hooray" << std::endl;
+            int counter = 0;
             while(true) {
                 std::string prompt = "";
-                std::cout << "\ncommand (h for help):";
+                if (counter == 0) {
+                    std::cout << "\ncommand (h for help): ";
+                } else {
+                    std::cout << "\ncommand: ";
+                }
                 std::cin >> prompt;
                 std::cout << std::endl;
                     if (prompt == "h") {
-                        std::cout << "Scene creator for Hooray. Here are the commands:\nh: help (this)\nc: camera setup\nb: set background color\nf: set fog (Currently doesn't do anything)\no: edit/create an object in the scene\nl: edit the light source (Default is intensity: 100\% and is at 0, 0, 0,)\np: show current setup of the scene\nw: write this buffer data to the scene\nr: render the currently saved data\nq: quit the program\n";
+                        counter++;
+                        std::cout << "Scene creator for Hooray. Here are the commands:\nh: help (this)\nc: camera setup\nb: set background color\nf: set fog (Currently doesn't do anything)\no: edit/create an object in the scene\nd: delete object specified by its index\nl: edit the light source (Default is intensity: 100\% and is at 0, 0, 0,)\np: show current setup of the scene\nw: write this buffer data to the scene\nr: render the currently saved data\ns: clear the terminal (only works on linux)\nq: quit the program\n";
+                        std::cout << "\nWhen you are asked for a number input a number, otherwise the program will not work.\n";
+                    } else if (prompt == "d") {
+                        Sure:
+                        std::string sureness;
+                        std::cout << "Are you sure you want to delete an object? (y/n)" << std::endl;
+                        std::cin >> sureness;
+                        if (sureness == "y") {
+                            auto isNumber = [] (std::string s) {
+                                std::string::const_iterator it = s.begin();
+                                while (it != s.end() && std::isdigit(*it)) ++it;
+                                return !s.empty() && it == s.end();
+                            };
+                            Deletion:
+                            std::string deletionIndexString;
+                            std::cout << "Specify the index of the index of the object you want to delete\n";
+                            std::cin >> deletionIndexString;
+                            int deletionIndex;
+                            if (isNumber(deletionIndexString)) {
+                                int l = std::stoi(deletionIndexString);
+                                if ((l < 0) || (objects.size() < l)) {
+                                    std::cout << "The entered index: " << deletionIndexString << " is invalid\n";
+                                    goto Deletion;
+                                } else {
+                                    deletionIndex = l;
+                                }
+                            } else if (deletionIndexString == "q") {
+                                goto Sure;
+                            } else {
+                                std::cout << "The entered index: " << deletionIndex << " is invalid\n";
+                                goto Deletion;
+                            }
+
+                            objects.erase(objects.begin() + deletionIndex);
+                        } else if (sureness == "n") {
+                        } else {
+                            goto Sure;
+                        }
+
                     } else if (prompt == "w") {
                         Writing:
                         std::string a;
@@ -99,6 +145,8 @@ void ui::tui() {
                         std::cin >> background_color.y;
                         std::cout << "b: ";
                         std::cin >> background_color.z; 
+                    } else if (prompt == "s") {
+                        system("clear");
                     } else if (prompt == "q") {
                         Quitting:
                         std::string sure;
@@ -171,7 +219,9 @@ void ui::tui() {
                             std::cout << "\ncommand (h for help):";
                             std::cin >> objectPrompt;
                             if (objectPrompt == "h") {
-                                std::cout << "Object creator/editor for the scene creator inside Hooray commands:\nh: help\nt: edit/add triangle to this object\nd: delete triangle at index\np: print list of triangles\nn: name this object\nq: quit creating this object\n";
+                                std::cout << "Object create or/editor for the scene creator inside Hooray commands:\nh: help\nt: edit/add triangle to this object\nd: delete triangle at index\np: print list of triangles\nn: name this object\ns: clear the terminal (Only works on linux)\nq: quit creating this object\n";
+                            } else if (objectPrompt == "s") {
+                                system("clear");
                             } else if (objectPrompt == "t") {
                                     TriangleIndexInput:
                                     std::string triangleIndexString = "";
@@ -240,7 +290,7 @@ void ui::tui() {
                                     std::cout << "Table of triangles inside this object: (" << objects[index].name << "," << index << ")\n";
                                     std::cout << std::left << std::setw(10) << "index" << std::setw(15) << "p0" << std::setw(15) << "p1" << std::setw(15) << "p2" << std::setw(15) << "color" << std::left << std::setw(30) << "name" << std::endl;
                                     for (int i = 0; i < objects[index].triangles.size(); i++) {
-                                        std::cout << std::left << std::setw(10) << i << std::setw(5) << objects[index].triangles[i].p0.x << std::setw(5) << objects[index].triangles[i].p0.y << std::setw(5) << objects[index].triangles[i].p0.z << std::setw(5) << objects[index].triangles[i].p1.x << std::setw(5) << objects[index].triangles[i].p1.y << std::setw(5) << objects[index].triangles[i].p1.z << std::setw(5) << objects[index].triangles[i].p2.x << std::setw(5) << objects[index].triangles[i].p2.y << std::setw(5) << objects[index].triangles[i].p2.z << std::setw(5) << objects[index].triangles[i].color.x << std::setw(5) << objects[index].triangles[i].color.y << std::setw(5) << objects[index].triangles[i].color.z << std::left << std::setw(30) << objects[index].triangles[i].name;
+                                        std::cout << std::left << std::setw(10) << i << std::setw(5) << objects[index].triangles[i].p0.x << std::setw(5) << objects[index].triangles[i].p0.y << std::setw(5) << objects[index].triangles[i].p0.z << std::setw(5) << objects[index].triangles[i].p1.x << std::setw(5) << objects[index].triangles[i].p1.y << std::setw(5) << objects[index].triangles[i].p1.z << std::setw(5) << objects[index].triangles[i].p2.x << std::setw(5) << objects[index].triangles[i].p2.y << std::setw(5) << objects[index].triangles[i].p2.z << std::setw(5) << objects[index].triangles[i].color.x << std::setw(5) << objects[index].triangles[i].color.y << std::setw(5) << objects[index].triangles[i].color.z << std::left << std::setw(30) << objects[index].triangles[i].name << std::endl;
                                     }
                                 }
                                 else if (objectPrompt == "d") {
@@ -251,7 +301,7 @@ void ui::tui() {
                                     std::cin >> deleteIndexString;
                                     if (isNumber(deleteIndexString)) {
                                         int c = std::stoi(deleteIndexString);
-                                        if((c < 0) || (c > objects[index].triangles.size())) {
+                                        if((c < 0) || (c > objects[index].triangles.size() - 1)) {
                                             std::cout << "Invalid index. The triangle does not exist\n";
                                             goto deleteIndexInput;
                                         } else {
@@ -265,7 +315,17 @@ void ui::tui() {
                                     }
                                 }
                                 else if (objectPrompt == "q") {
-                                    quit = true;
+                                    QuitObject:
+                                    std::string w;
+                                    std::cout << "Are you sure you wan t to quit editing this object (" << index << ", " << objects[index].name << ")? (y/n)\n";
+                                    std::cin >> w;
+                                    if (w == "y") {
+                                        quit = true;
+                                    } else if (w == "n") {}
+                                    else {
+                                        std::cout << "Unexpected answer: " << w << std::endl;
+                                        goto QuitObject;
+                                    }
                                 }
                                 else {
                                     std::cout << "\nInvalid command" << std::endl;
@@ -276,6 +336,13 @@ void ui::tui() {
                     }
                 }
             } else if (b == "n") {}
-    } else {}
+            else {
+                std::cout << "Invalid character: " << b << std::endl;
+                goto SceneCreator;
+            }
+    } else {
+        std::cout << "Invalid character: " << d << std::endl;
+        goto LoadSafeFile;
+    }
 } 
 

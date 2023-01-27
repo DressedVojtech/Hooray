@@ -69,7 +69,7 @@ void ui::tui() {
         std::cout << std::endl;
         if (prompt == "h") {
             counter++;
-            std::cout << "Here are the commands and what they do:\nh: help (this)\nc: camera setup\nb: set background color\nf: set fog (Currently doesn't do anything)\no: edit/create an object in the scene\nd: delete object specified by its index\nl: edit the light source (Default is intensity: 100\% and is at 0, 0, 0,)\np: show current setup of the scene\nw: write this buffer data to the scene\nr: render the currently saved data\ns: clear the terminal (only works on linux)\nq: quit the program\n";
+            std::cout << "Here are the commands and what they do:\nh: help (this)\nc: camera setup\nb: set background color\nf: set fog (Currently doesn't do anything)\no: edit/create an object in the scene\nd: delete object specified by its index\nl: edit the light source (Default is intensity: 100\% and is at 0, 0, 0,)\np: show current setup of the scene\nw: write this buffer data to the scene\nr: render the currently saved data\ne: export the rendered image\ns: clear the terminal (only works on linux)\nq: quit the program\n";
             std::cout << "\nWhen you are asked for a number input a number, otherwise the program will not work.\n";
         } else if (prompt == "r") {
             if (areYouSure("Are you sure you want to render this scene? (y/n)\n")) {

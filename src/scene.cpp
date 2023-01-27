@@ -61,7 +61,6 @@ rgb scene::pixel(int a, int b) {
 void scene::render() {
     populate_triangles();
     bitmap image(screen_width, screen_height);
-    std::cout << "P3\n" << screen_width << " " << screen_height << "\n255\n\n";
     for (int i = 0; i < screen_height; i++) {
         for (int j = 0; j < screen_width; j++) {
             image.setCell(pixel(i, j), i, j);

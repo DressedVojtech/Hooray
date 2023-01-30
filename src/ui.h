@@ -2,6 +2,7 @@
 #define ui_H
 #include <string>
 #include "scene.h"
+#include "exp.h"
 
 class ui {
     public:

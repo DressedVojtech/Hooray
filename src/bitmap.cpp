@@ -2,7 +2,7 @@
 #include <vector>
 #include "rgb.h"
 
-bitmap::bitmap(int width, int height) {
+void bitmap::init(int width, int height) {
     bm = std::vector<std::vector<rgb>>(height, std::vector<rgb>(width, {0, 0, 0}));
 }
 

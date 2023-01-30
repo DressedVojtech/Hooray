@@ -4,6 +4,7 @@
 #include <math.h>
 #include <string>
 #include <fstream>
+#include "bitmap.h"
 #include "object.h"
 #include "rgb.h"
 #include "vec3.h"
@@ -24,6 +25,7 @@ class scene {
         int screen_height;
         vec3 cam_pos;
         float distance;
+        bitmap image;
 
         void populate_triangles();
         vec3 pixel_coordinates(int i, int j);

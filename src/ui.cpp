@@ -1,5 +1,6 @@
 #include "ui.h"
 #include "scene.h"
+#include "exp.h"
 #include <string>
 #include <iostream>
 #include <vector>
@@ -71,6 +72,29 @@ void ui::tui() {
             counter++;
             std::cout << "Here are the commands and what they do:\nh: help (this)\nc: camera setup\nb: set background color\nf: set fog (Currently doesn't do anything)\no: edit/create an object in the scene\nd: delete object specified by its index\nl: edit the light source (Default is intensity: 100\% and is at 0, 0, 0,)\np: show current setup of the scene\nw: write this buffer data to the scene\nr: render the currently saved data\ne: export the rendered image\ns: clear the terminal (only works on linux)\nq: quit the program\n";
             std::cout << "\nWhen you are asked for a number input a number, otherwise the program will not work.\n";
+        } else if(prompt == "e") {
+            exp exporter;
+            bool quit = false;
+            std::cout << "Please specify the format you want your image to be exported in. \n(q to quit and l to list the options)\n";
+            while (!quit) {
+                std::string format = "";
+                std::cout << "selected format: ";
+                std::cin >> format;
+                if (format == "q") {
+                    quit = true;
+                } else if (format == "l") {
+                    std::cout << "\nppm: export in ppm format\nq: quit exporting\nl: list the available formats\n";
+                } else if (format == "ppm") {
+                    std::string path = "";
+                    std::cout << "Please input the path where you want your image saved, for example: /home/user/Pictures/image.ppm\n";
+                    exporter.ppm(Scene.image, path);
+                } else {
+                    std::cout << "Sorry this format is either unknown or not implemented.\nOr you just imputed some nonsense";
+                }
+            }
+
+        } else if (prompt == "p") {
+            
         } else if (prompt == "r") {
             if (areYouSure("Are you sure you want to render this scene? (y/n)\n")) {
                 Scene.render();
@@ -242,7 +266,7 @@ void ui::tui() {
                     }
                     std::cin >> objectPrompt;
                     if (objectPrompt == "h") {
-                        counter++;
+                        objectCounter++;
                         std::cout << "Here are the commands for creating object_strings:\nh: help\no: Set the position of the origin this object\nt: edit/add triangle to this object\nd: delete triangle at index\np: print list of triangles\nn: name this object\ns: clear the terminal (Only works on linux)\nq: quit creating this object\n";
                     } else if (objectPrompt == "o") {
                         if (areYouSure("Are you sure you want to edit the position of this object? (y/n)\n")) {

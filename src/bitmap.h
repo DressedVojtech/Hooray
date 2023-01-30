@@ -6,7 +6,7 @@
 class bitmap {
     public:
         std::vector <std::vector <rgb>> bm;
-        bitmap(int sizeX, int sizeY);
+        void init(int sizeX, int sizeY);
         void setCell(rgb color, int i, int j);
 };
 

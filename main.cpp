@@ -1,7 +1,7 @@
-#include "scene.h"
-#include <vector>
-#include <iostream>
-#include <math.h>
+// #include "scene.h"
+// #include <vector>
+// #include <iostream>
+// #include <math.h>
 #include "ui.h"
 
 // vojtik kosinka je vrchni programator, ale smazal, ze je vrchnim programatorem, takze uz neni

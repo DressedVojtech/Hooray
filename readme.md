@@ -7,7 +7,7 @@ To install and build. First clone the repository
 Next we need to build the project using cmake:
 `mkdir build && cd build && cmake .. && make`
 
-To run the project just exececute the executable.
+Then:
 `./hooray`
 
 ### Capibilities

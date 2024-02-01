@@ -1,9 +1,9 @@
 #include "rgb.h"
+#include "rgba.h"
 
 rgb rgb::operator + (rgb A) {
     return {A.r + r, A.g + g, A.b + b};
 }
-
 
 void rgb::check() {
     if(r < 0) {

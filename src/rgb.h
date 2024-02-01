@@ -1,5 +1,6 @@
 #ifndef rgb_H
 #define rgb_H
+#include "rgba.h"
 
 class rgb {
     public:

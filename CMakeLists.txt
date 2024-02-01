@@ -19,6 +19,7 @@ add_executable(hooray main.cpp
     src/object.cpp
     src/ray.cpp
     src/rgb.cpp
+    src/rgba.cpp
     src/scene.cpp
     src/triangle.cpp
     src/vec2.cpp

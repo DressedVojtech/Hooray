@@ -35,11 +35,8 @@ bool vec3::operator != (vec3 A) {
 }
 
 bool vec3::operator == (vec3 A) {
-    if (x == A.x && y == A.y && z == A.z) {
-        return true;
-    } else {
-        return false;
-    }
+    if (x == A.x && y == A.y && z == A.z) return true;
+    else return false;
 }
 
 vec3 vec3::cross_product(vec3 A) {

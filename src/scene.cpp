@@ -4,12 +4,12 @@
 #include "scene.h"
 #include "object.h"
 #include "rgb.h"
+#include "rgba.h"
 #include "vec3.h"
 #include "vec2.h"
 #include "triangle.h"
 #include "ray.h"
 #include "light_source.h"
-#include "rgba.h"
 #include "bitmap.h"
 #define black {0, 0, 0}
 
@@ -37,40 +37,115 @@ rgb scene::pixel(int a, int b) {
     float min_t;
     int index = -1;
     for (int i = 0; i < triangles.size(); i++) {
-        triangle::vec3b intersection = triangles[i].intersection(Ray);
-        if (intersection.hit == false);
-        else if (index == -1 && intersection.hit == true) {
-            min_t = intersection.P.distance_from(cam_pos);
+        vec3 intersection = triangles[i].intersection(Ray);
+        vec3 null = {NULL, NULL, NULL};
+        bool hit = (intersection != null);
+        if (!hit);
+        else if (index == -1 && hit) {
+            min_t = intersection.distance_from(cam_pos);
             index = i;
-        } else if (intersection.P.distance_from(cam_pos) < min_t && intersection.hit == true) {
-            min_t = intersection.P.distance_from(cam_pos);
+        } else if (intersection.distance_from(cam_pos) < min_t && hit) {
+            min_t = intersection.distance_from(cam_pos);
             index = i;
         }
     }
     if (index == -1) {
         return void_color;
     }
-    // ray l_Ray = {light_sources[0].position, triangles[index].intersection(Ray).P};
     rgb res = triangles[index].color;
-    res.dimm((light_sources[0].position.distance_from(triangles[index].intersection(Ray).P))/(light_sources[0].intensity*10));
-    // rgb fog_level = {fog.r / a, fog.g / a, fog.b / a};
-    // res = res + fog_level;
+    /* Planning to move this to post processing*/
+    // ray Koranteng = {light_sources[0].position, triangles[index].intersection(Ray).P};
+    // float l_min_t;
+    // float l_index = -1;
+    // for (int i = 0; i < triangles.size(); i++) {
+    //     triangle::vec3b intersection = triangles[i].intersection(Koranteng);
+    //     if (hit);
+    //     else if (l_index == -1 && hit) {
+    //         l_min_t = intersection.distance_from(light_sources[0].position);
+    //         l_index = -1;
+    //     }
+    //     else if (intersection.distance_from(light_sources[0].position) < l_min_t && hit) {
+    //         l_min_t = intersection.distance_from(light_sources[0].position);
+    //         l_index = i;
+    //     }
+    // }
+    // if (light_sources[0].position.distance_from(triangles[index].intersection(Ray).P) > l_min_t) {
+    //     res.dimm((light_sources[0].position.distance_from(triangles[index].intersection(Ray).P))/(light_sources[0].intensity*5));
+    // } else {
+    //     res.dimm((light_sources[0].position.distance_from(triangles[index].intersection(Ray).P))/(light_sources[0].intensity*10));
+    // }
+    /* Planning to move this to post processing*/
     return res;
 }
 
-void scene::render() {
-    populate_triangles();
-    bitmap image(screen_width, screen_height);
-    std::cout << "P3\n" << screen_width << " " << screen_height << "\n255\n\n";
-    for (int i = 0; i < screen_height; i++) {
-        for (int j = 0; j < screen_width; j++) {
-            image.setCell(pixel(i, j), i, j);
+rgba scene::shadow(int a, int b) {
+    ray Ray = {cam_pos, pixel_coordinates(a, b)};
+    float min_t;
+    int index = -1;
+    for (int i = 0; i < triangles.size(); i++) {
+        vec3 intersection = triangles[i].intersection(Ray);
+        vec3 null = {NULL, NULL, NULL};
+        bool hit = (intersection != null);
+        if (!hit);
+        else if (index == -1 && hit) {
+            min_t = intersection.distance_from(cam_pos);
+            index = i;
+        } else if (intersection.distance_from(cam_pos) < min_t && hit) {
+            min_t = intersection.distance_from(cam_pos);
+            index = i;
         }
     }
+    vec3 P = triangles[index].intersection(Ray);
+    ray Koranteng = {light_sources[0].position, P};
+    float l_min_t;
+    float l_index = -1;
+    for (int i = 0; i < triangles.size(); i++) {
+        vec3 intersection = triangles[i].intersection(Koranteng);
+        vec3 null = {NULL, NULL, NULL};
+        bool hit = (intersection != null);
+        if (!hit);
+        else if (l_index == -1 && hit) {
+            l_min_t = intersection.distance_from(light_sources[0].position);
+            l_index = -1;
+        }
+        else if (intersection.distance_from(light_sources[0].position) < l_min_t && hit) {
+            l_min_t = intersection.distance_from(light_sources[0].position);
+            l_index = i;
+        }
+    }
+    if (l_min_t < light_sources[0].position.distance_from(P)) {
+        rgba A = {0, 0, 0, (light_sources[0].position.distance_from(triangles[index].intersection(Ray).P))/(light_sources[0].intensity*5) * 255};
+        A.check();
+        return A;
+    } else {
+        rgba A = {0, 0, 0, (light_sources[0].position.distance_from(triangles[index].intersection(Ray).P))/(light_sources[0].intensity*10) * 255};
+        A.check();
+        return A;
+    }
+
+    
 }
 
-void readSafeFiles() {
+bitmap scene::render_shadows() {
+    populate_triangles();
+    bitmap shadows(screen_width, screen_height);
+    for (int i = 0; i < screen_height; i++) {
+        for (int j = 0; j < screen_width; j++) {
+            shadows.setCell(shadow(i, j).to_rgba(), i, j);
+        }
+    }
+    return shadows;
+}
 
+bitmap scene::render() {
+    populate_triangles();
+    bitmap image(screen_width, screen_height);
+    for (int i = 0; i < screen_height; i++) {
+        for (int j = 0; j < screen_width; j++) {
+            image.setCell(pixel(i, j).to_rgba(), i, j);
+        }
+    }
+    return image; 
 }
 
 void scene::set_background(rgb color) {
@@ -91,29 +166,6 @@ void scene::add_light_source(l_s light_source) {
     light_sources.push_back(light_source);
 }
 
-void scene::set_fog(rgba Fog) {
-    fog = Fog;
-}
-
 void scene::add_object(object Object) {
     objects.push_back(Object);
 }
-
-
-
-// void scene::animate::rotate_scene(float angle, char axis) {
-//     for (int i = 0; i < triangles.size(); i++) {
-//         triangles[i].p0.rotate(angle, axis);
-//         triangles[i].p1.rotate(angle, axis);
-//         triangles[i].p2.rotate(angle, axis);
-//     }
-// }
-
-// void scene::animate::rotate_object(float angle, char axis, int index) {
-//     for (int i = 0; i < objects[index].trianlges.size(); i++) {
-//         objects[index].triangles[i].p0.rotate(angle, axis);
-//         objects[index].triangles[i].p1.rotate(angle, axis);
-//         objects[index].triangles[i].p2.rotate(angle, axis);
-//     }
-//     scene::populate_triangles();
-// }

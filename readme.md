@@ -10,7 +10,7 @@ Next we need to build the project using cmake:
 Then:
 `./hooray`
 
-### Capibilities
+### Capabilities
 ![0](https://user-images.githubusercontent.com/66478269/214893704-b47e0952-edba-4953-b5a6-8d248b6d4f84.png)
 ![1](https://user-images.githubusercontent.com/66478269/214893709-85f4ca0b-b89c-46e7-9520-d35a7f33b3df.png)
 ![2](https://user-images.githubusercontent.com/66478269/214893713-a843f063-4be8-4f50-8840-b5315364a232.png)

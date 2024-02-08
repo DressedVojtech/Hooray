@@ -1,6 +1,5 @@
 #ifndef rgb_H
 #define rgb_H
-#include "rgba.h"
 
 class rgb {
     public:
@@ -9,6 +8,10 @@ class rgb {
         float b;
 
         rgb operator + (rgb A);
+
+        rgb();
+        rgb(float R, float G, float B);
+        rgb(int R, int G, int B);
 
         void check();
         void dimm(float a);

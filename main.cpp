@@ -9,41 +9,40 @@
 int main() {
     scene scene1;
     scene1.set_resolution(1920, 1200);
-    scene1.set_cam({0, 0, 0}, 600);
-    scene1.set_background({0, 0, 0});
-    scene1.add_light_source({{0, 200, 0}, 0.9});
-    object Object;
-    rgb color = {255, 0, 200};
+    scene1.set_cam(vec3(0, 0, 0), 600);
+    scene1.set_background(rgb(0.0f, 0.0f, 0.0f));
+    scene1.add_light_source(light_source(vec3(0, 200, 0), 0.9));
+    object Object = object(vec3(-500, -200, -500));
+    rgb color = rgb(255.0f, 0.0f, 200.0f);
     float size = 1000;
     // Bottom
-    triangle Triangle0 = {{0, 0, 0}, {size, 0, 0}, {size, size, 0}, color}; Object.add_triangle(Triangle0);
-    triangle Triangle1 = {{0, 0, 0}, {0, size, 0}, {size, size, 0}, color}; Object.add_triangle(Triangle1);
+    triangle Triangle0 = triangle(vec3(0, 0, 0), vec3(size, 0, 0), vec3(size, size, 0), color); Object.add_triangle(Triangle0);
+    triangle Triangle1 =triangle(vec3(0, 0, 0), vec3(0, size, 0), vec3(size, size, 0), color); Object.add_triangle(Triangle1);
     // Front
-    triangle Triangle2 = {{0, 0, 0}, {0, 0, size}, {size, 0, size}, color}; Object.add_triangle(Triangle2);
-    triangle Triangle3 = {{0, 0, 0}, {size, 0, 0}, {size, 0, size}, color}; Object.add_triangle(Triangle3);
+    triangle Triangle2 = triangle(vec3(0, 0, 0), vec3(0, 0, size), vec3(size, 0, size), color); Object.add_triangle(Triangle2);
+    triangle Triangle3 = triangle(vec3(0, 0, 0), vec3(size, 0, 0), vec3(size, 0, size), color); Object.add_triangle(Triangle3);
     // Left
-    triangle Triangle4 = {{0, 0, 0}, {0, 0, size}, {0, size, size}, color}; Object.add_triangle(Triangle4);
-    triangle Triangle5 = {{0, 0, 0}, {0, size, 0}, {0, size, size}, color}; Object.add_triangle(Triangle5);
+    triangle Triangle4 = triangle(vec3(0, 0, 0), vec3(0, 0, size), vec3(0, size, size), color); Object.add_triangle(Triangle4);
+    triangle Triangle5 = triangle(vec3(0, 0, 0), vec3(0, size, 0), vec3(0, size, size), color); Object.add_triangle(Triangle5);
     // Back
-    triangle Triangle6 = {{size, 0, 0}, {size, size, 0}, {size, size, size}, color}; Object.add_triangle(Triangle6);
-    triangle Triangle7 = {{size, 0, 0}, {size, 0, size}, {size, size, size}, color}; Object.add_triangle(Triangle7);
+    triangle Triangle6 = triangle(vec3(size, 0, 0), vec3(size, size, 0), vec3(size, size, size), color); Object.add_triangle(Triangle6);
+    triangle Triangle7 = triangle(vec3(size, 0, 0), vec3(size, 0, size), vec3(size, size, size), color); Object.add_triangle(Triangle7);
     // Right
-    triangle Triangle8 = {{size, size, 0}, {size, size, size}, {0, size, size}, color}; Object.add_triangle(Triangle8);
-    triangle Triangle9 = {{size, size, 0}, {0, size, 0}, {0, size, size}, color}; Object.add_triangle(Triangle9);
+    triangle Triangle8 = triangle(vec3(size, size, 0), vec3(size, size, size), vec3(0, size, size), color); Object.add_triangle(Triangle8);
+    triangle Triangle9 = triangle(vec3(size, size, 0), vec3(0, size, 0), vec3(0, size, size), color); Object.add_triangle(Triangle9);
     // Top
-    triangle Triangle10 = {{size, 0, size}, {size, size, size}, {0, size, size}, color}; Object.add_triangle(Triangle10);
-    triangle Triangle11 = {{size, 0, size}, {0, 0, size}, {0, size, size}, color}; Object.add_triangle(Triangle11);
-    Object.set_position({-500, -200, -500});
+    triangle Triangle10 = triangle(vec3(size, 0, size), vec3(size, size, size), vec3(0, size, size), color); Object.add_triangle(Triangle10);
+    triangle Triangle11 = triangle(vec3(size, 0, size), vec3(0, 0, size), vec3(0, size, size), color); Object.add_triangle(Triangle11);
     scene1.add_object(Object);
 
-    object obj;
-    rgb bar = {40, 255, 255};
-    triangle troj0 = {{200, 0, 200}, {500, 0, 1000}, {1000, 0, 500}, bar}; obj.add_triangle(troj0);
-    obj.set_position({-500, 600, -500});
+    object obj = object(vec3(-500, 600, -500));
+    rgb barva = rgb(40.0f, 255.0f, 255.0f);
+    triangle troj0 = triangle(vec3(200, 0, 200), vec3(500, 0, 1000), vec3(1000, 0, 500), barva);
+    obj.add_triangle(troj0);
     scene1.add_object(obj);
 
     bitmap a = scene1.render();
-    bitmap b = scene1.render_shadows();
+    // bitmap b = scene1.render_shadows();
     a.export_as("image.ppm");
-    b.export_as("shadows.png");
+    // b.export_as("shadows.png");
 }

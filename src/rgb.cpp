@@ -1,8 +1,25 @@
 #include "rgb.h"
-#include "rgba.h"
 
 rgb rgb::operator + (rgb A) {
     return {A.r + r, A.g + g, A.b + b};
+}
+
+rgb::rgb() {
+    r = 0;
+    g = 0;
+    b = 0;
+}
+
+rgb::rgb(float R, float G, float B) {
+    r = R;
+    g = G;
+    b = B;
+}
+
+rgb::rgb(int R, int G, int B) {
+    r = static_cast<float>(R);
+    G = static_cast<float>(G);
+    B = static_cast<float>(B);
 }
 
 void rgb::check() {

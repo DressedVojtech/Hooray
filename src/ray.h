@@ -6,6 +6,9 @@ class ray {
     public:
         vec3 origin;
         vec3 direction;
+
+        ray();
+        ray(vec3 O, vec3 D);
 };
 
 #endif

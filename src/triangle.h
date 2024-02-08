@@ -18,11 +18,15 @@ class triangle {
     vec2 vt2;
     vec3 n; //normal vector
 
-    void normal(vec3 Normal);
-    void normal();
-    vec3 intersection(ray Ray);
-    void rotate(float angle, char axis);
     triangle operator + (vec3 A);
+
+    triangle();
+    triangle(vec3 P0, vec3 P1, vec3 P2, rgb COLOR, std::string TEXTURE, vec2 VT0, vec2 VT1, vec2 VT2);
+    triangle(vec3 P0, vec3 P1, vec3 P2, rgb COLOR);
+
+    void normal(vec3 NORMAL);
+    void normal();
+    vec3 intersection(ray RAY);
 };
 
 #endif

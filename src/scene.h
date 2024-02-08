@@ -13,30 +13,33 @@
 #include "light_source.h"
 #include "bitmap.h"
 
+
 class scene {
     public:
-        rgb void_color = {30, 30, 30};
         std::vector <object> objects;
         std::vector <triangle> triangles;
-        std::vector <l_s> light_sources;
+        std::vector <light_source> light_sources;
         int screen_width;
         int screen_height;
         vec3 cam_pos;
         float distance;
+        rgb void_color = {0, 0, 0};
 
 
         void populate_triangles();
-        vec3 pixel_coordinates(int i, int j);
-        rgb pixel(int i, int j);
-        rgba shadow(int a, int b);
+        vec3 pixel_coordinates(int I, int J);
+        rgb pixel(int I, int J);
+        rgba shadow(int A, int B);
         bitmap render();
+        bitmap render_colors();
         bitmap render_shadows();
+
         // Initiating a scene using functions
-        void set_background(rgb color);
-        void set_resolution(int width, int height);
-        void set_cam(vec3 position, float Distance);
-        void add_light_source(l_s light_source);
-        void add_object(object Object);
+        void set_background(rgb COLOR);
+        void set_resolution(int WIDTH, int HEIGHT);
+        void set_cam(vec3 POSITION, float DISTANCE);
+        void add_light_source(light_source LIGHT_SOURCE);
+        void add_object(object OBJECT);
 };
 
 #endif

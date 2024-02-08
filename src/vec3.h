@@ -18,7 +18,10 @@ class vec3 {
         bool operator ==(vec3 A);
         bool operator !=(vec3 A);
 
-        void rotate(float angle, char axis);
+        vec3();
+        vec3(bool ISNAN);
+        vec3(float X, float Y, float Z);
+
         vec3 cross_product(vec3 B);
         float dot_product(vec3 B);
         float distance_from(vec3 B);

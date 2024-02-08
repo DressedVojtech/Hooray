@@ -8,10 +8,13 @@ set (CMAKE_CXX_STANDARD 20)
 if (NOT CMAKE_BUILD_TYPE)
     set (CMAKE_BUILD_TYPE "Release")
     message (STATUS "Build type not specified: Use Release by default")
-endif (NOT CMAKE_BUILD_TYPE)
+endif ()
 
 find_package(SDL2 REQUIRED)
 include_directories(${SDL2_INCLUDE_DIRS})
+
+find_package(PNG REQUIRED)
+include_directories(${PNG_INCLUDE_DIR})
 
 # executable
 add_executable(hooray main.cpp
@@ -27,4 +30,4 @@ add_executable(hooray main.cpp
     src/bitmap.cpp
 )
 target_include_directories(hooray PRIVATE src)
-target_link_libraries(hooray ${SDL2_LIBRARIES})
+target_link_libraries(hooray ${SDL2_LIBRARIES} ${PNG_LIBRARY})

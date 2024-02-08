@@ -13,9 +13,13 @@ class rgba {
         rgba operator + (rgba A);
         rgba operator + (rgb A);
 
-        void check();
-        void dimm(float i);
-        void to_rgba(rgb A);
+        rgba();
+        rgba(float R, float G, float B, float A);
+        rgba(rgb RGB);
+
+        void clip();
+        void dimm(float D);
+        void translucify(float T);
 };
 
 #endif

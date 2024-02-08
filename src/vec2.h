@@ -12,7 +12,8 @@ class vec2 {
         vec2 operator *(vec2 A);
         vec2 operator /(vec2 A);
 
-        void rotate(float angle);
+        vec2();
+        vec2(float X, float Y);
 };
 
 #endif

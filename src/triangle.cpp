@@ -11,10 +11,11 @@ bool approxEquals(float A, float B, float C) {
     return abs(A - B) < C;
 }
 
-triangle triangle::operator + (vec3 A) {
-    return triangle(p0 + A, p1 + A, p2 + A, color, texture, vt0, vt1, vt2);
+void triangle::operator += (vec3 A) {
+    p0 += A;
+    p1 += A;
+    p2 += A;
 }
-
 triangle::triangle() {
     p0 = vec3();
     p1 = vec3();

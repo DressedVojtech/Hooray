@@ -16,8 +16,8 @@
 
 class scene {
     public:
-        std::vector <object> objects;
-        std::vector <triangle> triangles;
+        std::vector <object*> objects;
+        std::vector <triangle*> triangles;
         std::vector <light_source> light_sources;
         int screen_width;
         int screen_height;
@@ -39,7 +39,7 @@ class scene {
         void set_resolution(int WIDTH, int HEIGHT);
         void set_cam(vec3 POSITION, float DISTANCE);
         void add_light_source(light_source LIGHT_SOURCE);
-        void add_object(object OBJECT);
+        void add_object(object* OBJECT);
 };
 
 #endif

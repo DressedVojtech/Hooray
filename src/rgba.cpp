@@ -6,11 +6,7 @@ rgba rgba::operator + (rgb A) {
 }
 
 rgba rgba::operator+(rgba A) {
-    float alphaBlend = 1.0 - (1.0 - a) * (1.0 - A.a);
-    float rResult = (r * a + A.r * A.a * (1.0 - a)) / alphaBlend;
-    float gResult = (g * a + A.g * A.a * (1.0 - a)) / alphaBlend;
-    float bResult = (b * a + A.b * A.a * (1.0 - a)) / alphaBlend;
-    return rgba(rResult, gResult, bResult, alphaBlend);
+    return rgba((A.r * A.a + r * a * (1 - A.a)) / (A.a + a * (1 - A.a)), (A.g * A.a + g * a * (1 - A.a)) / (A.a + a * (1 - A.a)), (A.b * A.a + b * a * (1 - A.a)) / (A.a + a * (1 - A.a)), A.a + a * (1 - A.a));
 }
 
 rgba::rgba() {

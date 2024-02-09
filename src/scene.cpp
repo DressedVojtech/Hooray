@@ -16,13 +16,9 @@
 void scene::populate_triangles() {
     triangles.clear();
     for (int i = 0; i < objects.size(); i++) {
-        for (int j = 0; j < objects[i].triangles.size(); j++) {
-            triangle Triangle;
-            Triangle = objects[i].triangles[j];
-            Triangle.p0 = Triangle.p0 + objects[i].position;
-            Triangle.p1 = Triangle.p1 + objects[i].position;
-            Triangle.p2 = Triangle.p2 + objects[i].position;
-            triangles.push_back(Triangle);
+        for (int j = 0; j < objects[i]->triangles.size(); j++) {
+            *objects[i]->triangles[j] += objects[i]->position;
+            triangles.push_back(objects[i]->triangles[j]);
         }
     }
 }
@@ -37,7 +33,7 @@ rgb scene::pixel(int A, int B) {
     float min_t;
     int index = -1;
     for (int i = 0; i < triangles.size(); i++) {
-        vec3 intersection = triangles[i].intersection(Ray);
+        vec3 intersection = triangles[i]->intersection(Ray);
         bool hit = !isnan(intersection.x);
         if (!hit);
         else if (index == -1 && hit) {
@@ -51,68 +47,68 @@ rgb scene::pixel(int A, int B) {
     if (index == -1) {
         return void_color;
     }
-    rgb res = triangles[index].color;
+    rgb res = triangles[index]->color;
     return res;
 }
 
-rgba scene::shadow(int A, int B) {
-    ray Ray = ray(cam_pos, pixel_coordinates(A, B));
-    float min_t;
-    int index = -1;
-    for (int i = 0; i < triangles.size(); i++) {
-        vec3 intersection = triangles[i].intersection(Ray);
-        vec3 null = !isnan(intersection.x);
-        bool hit = (intersection != null);
-        if (!hit);
-        else if (index == -1 && hit) {
-            min_t = intersection.distance_from(cam_pos);
-            index = i;
-        } else if (intersection.distance_from(cam_pos) < min_t && hit) {
-            min_t = intersection.distance_from(cam_pos);
-            index = i;
-        }
-    }
-    vec3 P = triangles[index].intersection(Ray);
-    ray Koranteng = {light_sources[0].position, P};
-    float l_min_t;
-    float l_index = -1;
-    for (int i = 0; i < triangles.size(); i++) {
-        vec3 intersection = triangles[i].intersection(Koranteng);
-        vec3 null = !isnan(intersection.x);
-        bool hit = (intersection != null);
-        if (!hit);
-        else if (l_index == -1 && hit) {
-            l_min_t = intersection.distance_from(light_sources[0].position);
-            l_index = -1;
-        }
-        else if (intersection.distance_from(light_sources[0].position) < l_min_t && hit) {
-            l_min_t = intersection.distance_from(light_sources[0].position);
-            l_index = i;
-        }
-    }
-    if (l_min_t < light_sources[0].position.distance_from(P)) {
-        rgba a = rgba(0, 0, 0, 0.3);
-        a.clip();
-        return a;
-    } else {
-        rgba a = rgba(0, 0, 0, 0.6);
-        a.clip();
-        return a;
-    }
+// rgba scene::shadow(int A, int B) {
+//     ray Ray = ray(cam_pos, pixel_coordinates(A, B));
+//     float min_t;
+//     int index = -1;
+//     for (int i = 0; i < triangles.size(); i++) {
+//         vec3 intersection = triangles[i]->intersection(Ray);
+//         vec3 null = !isnan(intersection.x);
+//         bool hit = (intersection != null);
+//         if (!hit);
+//         else if (index == -1 && hit) {
+//             min_t = intersection.distance_from(cam_pos);
+//             index = i;
+//         } else if (intersection.distance_from(cam_pos) < min_t && hit) {
+//             min_t = intersection.distance_from(cam_pos);
+//             index = i;
+//         }
+//     }
+//     vec3 P = triangles[index]->intersection(Ray);
+//     ray Koranteng = {light_sources[0].position, P};
+//     float l_min_t;
+//     float l_index = -1;
+//     for (int i = 0; i < triangles.size(); i++) {
+//         vec3 intersection = triangles[i]->intersection(Koranteng);
+//         vec3 null = !isnan(intersection.x);
+//         bool hit = (intersection != null);
+//         if (!hit);
+//         else if (l_index == -1 && hit) {
+//             l_min_t = intersection.distance_from(light_sources[0].position);
+//             l_index = -1;
+//         }
+//         else if (intersection.distance_from(light_sources[0].position) < l_min_t && hit) {
+//             l_min_t = intersection.distance_from(light_sources[0].position);
+//             l_index = i;
+//         }
+//     }
+//     if (l_min_t < light_sources[0].position.distance_from(P)) {
+//         rgba a = rgba(0, 0, 0, 0.3);
+//         a.clip();
+//         return a;
+//     } else {
+//         rgba a = rgba(0, 0, 0, 0);
+//         a.clip();
+//         return a;
+//     }
 
     
-}
+// }
 
-bitmap scene::render_shadows() {
-    populate_triangles();
-    bitmap shadows(screen_width, screen_height);
-    for (int i = 0; i < screen_height; i++) {
-        for (int j = 0; j < screen_width; j++) {
-            shadows.setCell(shadow(i, j), i, j);
-        }
-    }
-    return shadows;
-}
+// bitmap scene::render_shadows() {
+//     populate_triangles();
+//     bitmap shadows(screen_width, screen_height);
+//     for (int i = 0; i < screen_height; i++) {
+//         for (int j = 0; j < screen_width; j++) {
+//             shadows.setCell(shadow(i, j), i, j);
+//         }
+//     }
+//     return shadows;
+// }
 
 bitmap scene::render_colors() {
     populate_triangles();
@@ -131,8 +127,8 @@ bitmap scene::render() {
     for (int i = 0; i < screen_height; i++) {
         for (int j = 0; j < screen_width; j++) {
             rgba A = rgba(pixel(i, j));
-            rgba B = shadow(i, j);
-            image.setCell(A + B, i, j);
+            // rgba B = shadow(i, j);
+            image.setCell(A /*+ B*/, i, j);
         }
     }
     return image; 
@@ -156,6 +152,6 @@ void scene::add_light_source(light_source LIGHT_SOURCE) {
     light_sources.push_back(LIGHT_SOURCE);
 }
 
-void scene::add_object(object OBJECT) {
+void scene::add_object(object* OBJECT) {
     objects.push_back(OBJECT);
 }

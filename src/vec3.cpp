@@ -26,6 +26,12 @@ vec3 vec3::operator / (vec3 A) {
     return res;
 }
 
+void vec3::operator += (vec3 A) {
+    x += A.x;
+    y += A.y;
+    z += A.z;
+}
+
 bool vec3::operator != (vec3 A) {
     if (x == A.x && y == A.y && z == A.z) {
         return false;

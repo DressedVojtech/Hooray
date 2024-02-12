@@ -23,8 +23,6 @@ Then we need to add a light source: `MyScene.add_light_source({{10, 10, 10}, 0.3
 After we set all these values and add an object to the scene, we can render the scene by running the funciton `MyScene.render();`
 
 ### Future goals
-- Reading safe files from .yaml
-- Animation
 - Better lighting
 - Reading .obj files
 - Exporting other image formats then .ppm

@@ -10,24 +10,27 @@ class vec3 {
         float y;
         float z;
 
-        vec3 operator +(vec3 A);
-        vec3 operator -(vec3 A);
-        vec3 operator *(vec3 A);
-        vec3 operator *(float a);
-        vec3 operator /(vec3 A);
-        void operator +=(vec3 A);
-        bool operator ==(vec3 A);
-        bool operator !=(vec3 A);
-
         vec3();
-        vec3(bool ISNAN);
         vec3(float X, float Y, float Z);
+        vec3(int X, int Y, int Z);
+        vec3(const vec3&);
 
-        vec3 cross_product(vec3 B);
-        float dot_product(vec3 B);
-        float distance_from(vec3 B);
+        vec3  operator + (vec3 A);
+        vec3  operator + (float A);
+        vec3  operator - (vec3 A);
+        vec3  operator - (float A);
+        float operator * (vec3 A); // dot
+        vec3  operator % (vec3 A); // cross
+        vec3  operator * (float a);
+        vec3  operator / (float A);
+
+        vec3& operator += (vec3 A);
+        vec3& operator -= (vec3 A);
+        bool operator == (vec3 A);
+        bool operator != (vec3 A);
+
+        float distance(vec3 B);
         float magnitude();
-        float angle(vec3 B);
 };
 
 #endif

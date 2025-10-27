@@ -1,8 +1,6 @@
 #include "rgb.h"
 
-rgb rgb::operator + (rgb A) {
-    return {A.r + r, A.g + g, A.b + b};
-}
+rgb::rgb(const rgb&) = default;
 
 rgb::rgb() {
     r = 0;
@@ -16,13 +14,10 @@ rgb::rgb(float R, float G, float B) {
     b = B;
 }
 
-rgb::rgb(int R, int G, int B) {
-    r = static_cast<float>(R);
-    G = static_cast<float>(G);
-    B = static_cast<float>(B);
-}
+rgb::rgb(int R, int G, int B)
+    :rgb(static_cast<float>(R), static_cast<float>(G), static_cast<float>(B)){}
 
-void rgb::check() {
+void rgb::clip() {
     if(r < 0) {
         r = 0;
     } else if (r > 255) {
@@ -40,9 +35,75 @@ void rgb::check() {
     }
 }
 
-void rgb::dimm(float a) {
-    r -= a;
-    g -= a;
-    b -= a;
-    check();
+rgb rgb::operator + (rgb A) {
+    rgb B(A.r + r, A.g + g, A.b + b);
+    B.clip();
+    return B;
 }
+
+rgb rgb::operator + (float A) {
+    rgb B(A + r, A + g, A + b);
+    B.clip();
+    return B;
+}
+
+rgb rgb::operator + (int A) {
+    rgb B(r + static_cast<float>(A), g + static_cast<float>(A), b + static_cast<float>(A));
+    B.clip();
+    return B;
+}
+
+rgb rgb::operator - (rgb A) {
+    rgb B(r - A.r, g - A.g, b - A.b);
+    B.clip();
+    return B;
+}
+
+rgb rgb::operator - (float A) {
+    rgb B(r - A, g - A, b - A);
+    B.clip();
+    return B;
+}
+
+rgb rgb::operator - (int A) {
+    rgb B(r - static_cast<float>(A), g - static_cast<float>(A), b - static_cast<float>(A));
+    B.clip();
+    return B;
+}
+
+rgb& rgb::operator += (rgb A) {
+    r += A.r; g += A.g; b += A.b;
+    clip();
+    return *this;
+}
+
+rgb& rgb::operator += (float A) {
+    r += A; g += A; b += A;
+    clip();
+    return *this;
+}
+
+rgb& rgb::operator += (int A) {
+    r += static_cast<float>(A); g += static_cast<float>(A); b += static_cast<float>(A);
+    clip();
+    return *this;
+}
+
+rgb& rgb::operator -= (rgb A) {
+    r -= A.r; g -= A.g; b -= A.b;
+    clip();
+    return *this;
+}
+
+rgb& rgb::operator -= (float A) {
+    r -= A; g -= A; b -= A;
+    clip();
+    return *this;
+}
+
+rgb& rgb::operator -= (int A) {
+    r -= static_cast<float>(A); g -= static_cast<float>(A); b -= static_cast<float>(A);
+    clip();
+    return *this;
+}
+

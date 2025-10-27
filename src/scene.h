@@ -5,41 +5,31 @@
 #include <string>
 #include <fstream>
 #include "object.h"
-#include "rgb.h"
+#include "rgba.h"
 #include "vec3.h"
-#include "vec2.h"
 #include "triangle.h"
-#include "ray.h"
-#include "light_source.h"
+#include "line.h"
+//#include "light_source.h"
 #include "bitmap.h"
 
 
 class scene {
     public:
         std::vector <object*> objects;
-        std::vector <triangle*> triangles;
-        std::vector <light_source> light_sources;
+        //std::vector <light_source> light_sources;
         int screen_width;
         int screen_height;
         vec3 cam_pos;
         float distance;
-        rgb void_color = {0, 0, 0};
+        rgb bg_color = {0, 0, 0};
 
+        std::vector<bitmap> bm;
 
-        void populate_triangles();
-        vec3 pixel_coordinates(int I, int J);
-        rgb pixel(int I, int J);
-        rgba shadow(int A, int B);
-        bitmap render();
-        bitmap render_colors();
-        bitmap render_shadows();
+        scene(rgb BACKGROUND, int WIDTH, int HEIGHT, vec3 CAM_POS, float FOCAL_LENGTH, /*light_source LIGHT_SOURCE,*/ std::vector<object*> OBJECTS);
+        scene(rgb BACKGROUND, int WIDTH, int HEIGHT, vec3 CAM_POS, float FOCAL_LENGTH /*light_source LIGHT_SOURCE,*/);
+        scene(std::vector<object*> OBJECTS);
 
-        // Initiating a scene using functions
-        void set_background(rgb COLOR);
-        void set_resolution(int WIDTH, int HEIGHT);
-        void set_cam(vec3 POSITION, float DISTANCE);
-        void add_light_source(light_source LIGHT_SOURCE);
-        void add_object(object* OBJECT);
+        void render();
 };
 
 #endif
